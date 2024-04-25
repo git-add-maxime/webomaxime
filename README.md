@@ -1,2 +1,2 @@
 # webomaxime
-Portfolio Maxime LORNE
+Portfolio de Maxime LORNE
