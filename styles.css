@@ -1,0 +1,333 @@
+/* =============================
+   RESET & BASE STYLES
+============================= */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+
+/* =============================
+   THEME (mobile-first : clair)
+============================= */
+:root {
+  --bg: #f8fafc;
+  --bg-soft: #ffffff;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --primary: #2563eb;
+  --accent: #7c3aed;
+  --ring: rgba(37,99,235,.35);
+  --border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+  --radius: 16px;
+  --space: clamp(16px, 2.4vw, 24px);
+  --maxw: 1100px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0f19;
+    --bg-soft: #121728;
+    --card: #131a2e;
+    --text: #e6eaf2;
+    --muted: #b9c2d0;
+    --primary: #58a6ff;
+    --accent: #7c3aed;
+    --ring: rgba(88,166,255,.45);
+  }
+}
+
+/* =============================
+   GLOBAL LAYOUT
+============================= */
+.container { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--space); }
+section { padding-block: clamp(48px, 8vw, 96px); }
+.kicker {
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: .85rem;
+}
+body {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+  color: var(--text);
+}
+
+/* =============================
+   SKIP LINK
+============================= */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: var(--space);
+  top: var(--space);
+  width: auto;
+  height: auto;
+  padding: .6rem 1rem;
+  background: var(--card);
+  border-radius: 999px;
+  outline: 2px solid var(--primary);
+}
+
+/* =============================
+   HEADER / NAVBAR
+============================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: saturate(180%) blur(8px);
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 64px;
+  justify-content: flex-start;
+}
+.brand { font-weight: 700; letter-spacing: .4px; }
+
+/* Cache l’input checkbox hack */
+.menu-btn { display: none; }
+
+/* Burger : visible en mobile, poussé à droite */
+.hamb {
+  background: none;
+  border: 0;
+  font: inherit;
+  line-height: 1;
+  margin-left: auto;
+  display: block;
+  cursor: pointer;
+  font-size: 1.6rem;
+}
+
+/* Menu mobile fermé par défaut */
+header nav ul {
+  display: none;
+  position: absolute;
+  inset: 64px var(--space) auto var(--space);
+  padding: 16px;
+  margin: 0;
+  list-style: none;
+  background: var(--card);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  max-width: calc(100vw - (var(--space) * 2));
+  width: 100%;
+}
+header nav[data-open="true"] ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+nav a {
+  opacity: .9;
+  font-weight: 500;
+}
+nav a:hover,
+nav a:focus-visible {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Desktop : menu horizontal et burger caché */
+@media (min-width: 760px) {
+  .hamb { display: none; }
+  header nav ul {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: clamp(12px, 2.2vw, 24px);
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* =============================
+   HERO SECTION
+============================= */
+.hero {
+  padding-block: clamp(40px, 10vw, 120px);
+  text-align: center;
+}
+.hero h1 {
+  font-size: clamp(26px, 5vw, 44px);
+  line-height: 1.1;
+  margin: 0 0 10px;
+}
+.hero p {
+  color: var(--muted);
+  margin: 0 auto;
+  max-width: 60ch;
+}
+
+/* =============================
+   ABOUT SECTION
+============================= */
+.about {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(16px, 4vw, 32px);
+  align-items: center;
+  background:
+    radial-gradient(1000px 300px at 10% -10%, color-mix(in oklab, var(--primary) 18%, transparent), transparent),
+    radial-gradient(1000px 300px at 110% 110%, color-mix(in oklab, var(--accent) 12%, transparent), transparent);
+  border-radius: calc(var(--radius) + 8px);
+  padding: clamp(16px, 3vw, 28px);
+}
+.about figure {
+  margin: 0;
+  border-radius: calc(var(--radius) + 4px);
+  overflow: hidden;
+  background: var(--card);
+  border: var(--border);
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+.about img { width: 100%; height: auto; }
+.about p { color: var(--muted); margin: 8px 0 0; }
+@media (min-width: 920px) {
+  .about { grid-template-columns: 1fr 1.25fr; }
+}
+
+/* =============================
+   PROJECTS GRID
+============================= */
+.grid { display: grid; gap: clamp(16px, 2.4vw, 24px); grid-template-columns: 1fr; }
+@media (min-width: 620px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+.card {
+  background: var(--card);
+  border: var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.2);
+}
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: #0b0f19;
+}
+.card .content { padding: 18px; }
+.card h3 { margin: 0 0 6px; font-size: 1.1rem; }
+.meta { font-size: .88rem; color: var(--muted); margin-bottom: 10px; }
+.actions { margin-top: auto; padding: 0 18px 18px; display: flex; gap: 10px; }
+
+/* =============================
+   BUTTONS
+============================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .6rem .9rem;
+  border-radius: 10px;
+  border: var(--border);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--bg) 10%, transparent), transparent);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn.primary {
+  border-color: transparent;
+  background: linear-gradient(180deg, var(--primary), color-mix(in oklab, var(--primary) 70%, black));
+  color: #fff;
+}
+.btn:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* =============================
+   CONTACT FORM
+============================= */
+form {
+  margin-top: 12px;
+  background: var(--card);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  max-width: 740px;
+  width: 100%;
+}
+.row { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 640px) { .row { grid-template-columns: 1fr 1fr; } }
+
+label {
+  display: block;
+  font-weight: 600;
+  margin: .4rem 0;
+}
+input, textarea, select {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  padding: .8rem 1rem;
+  border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+  background: var(--bg-soft);
+  color: var(--text);
+}
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+input:focus, textarea:focus, select:focus {
+  outline: 3px solid var(--ring);
+  outline-offset: 1px;
+}
+.hint {
+  font-size: .9rem;
+  color: var(--muted);
+  margin-top: .25rem;
+}
+
+/* =============================
+   FOOTER
+============================= */
+footer {
+  padding: 32px var(--space);
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* =============================
+   MISC
+============================= */
+::selection {
+  background: color-mix(in oklab, var(--primary) 30%, transparent);
+}
