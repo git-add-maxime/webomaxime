@@ -3,170 +3,137 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="script.js" defer></script>
-  <title>Mon Portfolio — One Page</title>
-  <meta name="description" content="Portfolio one-page moderne et accessible avec sections À propos, Projets et Contact." />
-  <!-- Polices (optionnel) -->
+  <title>Maxime Lorne — Portfolio IT (Support • Supervision)</title>
+  <meta name="description" content="Technicien helpdesk & supervision (L1/L2) — AD, Office 365, ticketing (EasyVista, Jira, Autotask), supervision (alertes & escalade).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-
-
+  <script defer src="script.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Maxime Lorne",
+    "jobTitle":"Technicien support / Supervision",
+    "email":"mailto:maxime.lorne.pro@gmail.com",
+    "sameAs":["https://www.linkedin.com/in/maximelorne"]
+  }
+  </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Aller au contenu principal</a>
+  <div class="container">
+    <header>
+      <div class="id">
+        <div class="avatar" aria-hidden="true">ML</div>
+        <div>
+          <h1>Maxime Lorne</h1>
+          <div class="tagline">Technicien helpdesk & supervision (L1/L2) — AD • O365 • Ticketing • Supervision (alertes & escalade)</div>
+        </div>
+      </div>
+      <div class="btns">
+        <a class="btn primary" href="#contact">Me contacter</a>
+        <a class="btn" href="https://www.linkedin.com/in/maximelorne" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="#cv">CV (PDF)</a>
+      </div>
+    </header>
 
-  <header>
-    <div class="container nav" role="navigation" aria-label="Navigation principale">
-      <div class="brand">👋 Mon Portfolio</div>
+    <section class="hero">
+      <p>
+        Technicien helpdesk/supervision avec ~2 ans d'expérience en environnements Windows / Office 365 et Active Directory.
+        Habitué à la <strong>surveillance d'alertes</strong> et à l'<strong>escalade</strong> (supervision), au support L1/L2,
+        au ticketing (EasyVista, Jira, Autotask) et au scripting (PowerShell/VBA). Horaires : matin / après-midi (pas seulement nocturne).
+        Mobilité : Suisse romande (Genève / Lausanne).
+      </p>
+    </section>
 
-      <!-- Menu mobile (checkbox hack) -->
-      <input type="checkbox" id="menu" class="menu-btn" aria-label="Ouvrir le menu">
-      <label for="menu" class="hamb" aria-controls="menu" aria-expanded="false">☰</label>
+    <div class="grid">
+      <section class="card span-7">
+        <h2>Expériences</h2>
+        <div class="timeline">
+          <div class="item">
+            <div class="when">2025 — présent</div>
+            <div>
+              <div class="role">Supervision — Enedis (via Helpline)</div>
+              <div class="stack">Surveillance d’alertes, qualification et escalade vers les équipes ad hoc (plages : matin / après-midi).</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="when">12/2024 — 03/2025</div>
+            <div>
+              <div class="role">Technicien de niveau 2 — IsiSolutions</div>
+              <div class="stack">Windows & Mac • Incidents serveurs/RDS/NAS • Office 365 • Autotask • Support réseau • Gestion pôle d'assistance.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="when">11/2023 — 03/2024</div>
+            <div>
+              <div class="role">Helpdesk — Airbus DS (SII)</div>
+              <div class="stack">Support L1/L2 • KB • Migration O365 • Onboarding techniciens • Jira (JQL) • PowerShell • Masterisation poste.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="when">08/2021 — 09/2022</div>
+            <div>
+              <div class="role">Helpdesk — Areva (SPIE)</div>
+              <div class="stack">L1/L2 à fort volume • AD/IAM (référent) • O365 • EasyVista • Déploiements via SCCM.</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <nav>
+      <aside class="card span-5">
+        <h2>Compétences clés</h2>
+        <div class="chips">
+          <span class="chip">Active Directory</span>
+          <span class="chip">Office 365</span>
+          <span class="chip">Supervision (alertes & escalade)</span>
+          <span class="chip">Support L1/L2</span>
+          <span class="chip">EasyVista</span>
+          <span class="chip">Jira (JQL)</span>
+          <span class="chip">Autotask</span>
+          <span class="chip">SCCM</span>
+          <span class="chip">PowerShell</span>
+          <span class="chip">VBA</span>
+          <span class="chip">Python (bases)</span>
+        </div>
+      </aside>
+
+      <section class="card span-7">
+        <h2>Scripts & réalisations</h2>
         <ul>
-          <li><a href="#about">À propos</a></li>
-          <li><a href="#projects">Projets</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li>Automatisation de tâches en PowerShell (comptes AD, collectes, masterisation).</li>
+          <li>Macros VBA pour Excel (suivi interventions, exports ticketing).</li>
+          <li>Bot de candidature semi-automatique (lettres + coffrets d'application).</li>
         </ul>
-      </nav>
+      </section>
+
+      <aside class="card span-5">
+        <h2>Formation & infos</h2>
+        <p><strong>DUT Informatique</strong> (2019)</p>
+        <p>Français (courant), Anglais (lu & parlé)</p>
+        <p>Basé à Lyon — mobilité Suisse romande</p>
+        <div id="contact">
+          <p><strong>Contact :</strong><br>
+            <a href="mailto:maxime.lorne.pro@gmail.com">maxime.lorne.pro@gmail.com</a><br>
+            <a href="https://www.linkedin.com/in/maximelorne" target="_blank" rel="noopener">linkedin.com/in/maximelorne</a>
+          </p>
+        </div>
+      </aside>
+
+      <section class="card span-12" id="cv">
+        <h2>CV (PDF) & références</h2>
+        <p>Le CV PDF reste synthétique (1 page) et renvoie ici pour les détails. Pour un aperçu rapide, utilisez ce portfolio.</p>
+        <ul>
+          <li>Référence — IsiSolutions 2025 : M. Picon (Directeur)</li>
+          <li>Référence — SII 2024 : Adeline Berger (Chef de projet infogérance)</li>
+        </ul>
+      </section>
     </div>
-  </header>
 
-  <main id="main">
-    <!-- Hero / Intro -->
-    <section class="hero container" aria-labelledby="titre-hero">
-      <h1 id="titre-hero">Développeur Front-End — Créons des interfaces propres & rapides</h1>
-      <p>Ce portfolio est un modèle one-page moderne avec balises sémantiques et bonnes pratiques d’accessibilité. Remplacez les contenus ci-dessous par les vôtres.</p>
-    </section>
-
-    <!-- À propos -->
-    <section id="about" class="container" aria-labelledby="about-title">
-      <p class="kicker">À propos</p>
-      <div class="about">
-        <figure>
-          <!-- Placeholder photo (remplacez la source par votre vraie photo) -->
-          <img
-            src="data:image/svg+xml;utf8,
-              <svg xmlns='http://www.w3.org/2000/svg' width='900' height='900'>
-                <rect width='100%%' height='100%%' fill='%%230b0f19'/>
-                <text x='50%%' y='50%%' dominant-baseline='middle' text-anchor='middle'
-                  font-family='Arial,Helvetica,sans-serif' font-size='36' fill='%%23e6eaf2'>
-                  Votre photo (900x900)
-                </text>
-              </svg>"
-            alt="Votre portrait (remplacez par votre photo)"
-            width="900" height="900" loading="lazy" />
-          <figcaption class="hint">Astuce : remplacez l’image par `./images/portrait.jpg`.</figcaption>
-        </figure>
-
-        <div>
-          <h2 id="about-title">Salut, moi c’est <span aria-label="votre nom">Votre Nom</span></h2>
-          <p>Je suis développeur front-end, spécialisé en interfaces accessibles, performantes et élégantes. J’aime transformer des maquettes en expériences fluides, avec une attention aux détails (typographie, contrastes, micro-interactions).</p>
-          <p>Stack de prédilection : <strong>HTML5</strong>, <strong>CSS moderne</strong> (Grid/Flex), <strong>JavaScript</strong> (ESNext), et frameworks (React/Vue). Côté outillage : Vite, TypeScript, tests, intégration continue.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projets -->
-    <section id="projects" class="container" aria-labelledby="projects-title">
-      <p class="kicker">Projets</p>
-      <h2 id="projects-title">Sélection de travaux (placeholders)</h2>
-
-      <div class="grid" role="list">
-        <!-- Projet 1 -->
-        <article class="card" role="listitem" aria-labelledby="p1-title">
-          <img src="data:image/svg+xml;utf8,
-            <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
-              <defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'>
-                <stop offset='0%%' stop-color='%%237c3aed' /><stop offset='100%%' stop-color='%%2358a6ff' />
-              </linearGradient></defs>
-              <rect width='100%%' height='100%%' fill='url(%%23g)'/>
-              <text x='50%%' y='50%%' dominant-baseline='middle' text-anchor='middle'
-                font-family='Arial,Helvetica,sans-serif' font-size='40' fill='white'>Aperçu Projet 1</text>
-            </svg>"
-            alt="Aperçu du projet 1 (placeholder)" width="1200" height="600" loading="lazy">
-          <div class="content">
-            <h3 id="p1-title">Projet 1 — Nom du projet</h3>
-            <div class="meta">Rôle: Front-End • Stack: HTML/CSS/JS</div>
-            <p>Courte description du projet. Mettez en avant l’objectif, les contraintes et le résultat mesurable.</p>
-          </div>
-          <div class="actions">
-            <a class="btn primary" href="#" aria-label="Voir le projet 1 (démo)">Voir le projet</a>
-            <a class="btn" href="#" aria-label="Voir le code source du projet 1">Code source</a>
-          </div>
-        </article>
-
-        <!-- Projet 2 -->
-        <article class="card" role="listitem" aria-labelledby="p2-title">
-          <img src="data:image/svg+xml;utf8,
-            <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
-              <rect width='100%%' height='100%%' fill='%%23131a2e'/>
-              <text x='50%%' y='50%%' dominant-baseline='middle' text-anchor='middle'
-                font-family='Arial,Helvetica,sans-serif' font-size='40' fill='%%23e6eaf2'>Aperçu Projet 2</text>
-            </svg>"
-            alt="Aperçu du projet 2 (placeholder)" width="1200" height="600" loading="lazy">
-          <div class="content">
-            <h3 id="p2-title">Projet 2 — Nom du projet</h3>
-            <div class="meta">Rôle: Intégration • Stack: React/TypeScript</div>
-            <p>Décrivez votre contribution, les défis techniques (perf, accessibilité), et ce que vous avez appris.</p>
-          </div>
-          <div class="actions">
-            <a class="btn primary" href="#" aria-label="Voir le projet 2 (démo)">Voir le projet</a>
-            <a class="btn" href="#" aria-label="Voir le code source du projet 2">Code source</a>
-          </div>
-        </article>
-
-        <!-- Projet 3 -->
-        <article class="card" role="listitem" aria-labelledby="p3-title">
-          <img src="data:image/svg+xml;utf8,
-            <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'>
-              <rect width='100%%' height='100%%' fill='%%230b0f19'/>
-              <text x='50%%' y='50%%' dominant-baseline='middle' text-anchor='middle'
-                font-family='Arial,Helvetica,sans-serif' font-size='40' fill='%%23b9c2d0'>Aperçu Projet 3</text>
-            </svg>"
-            alt="Aperçu du projet 3 (placeholder)" width="1200" height="600" loading="lazy">
-          <div class="content">
-            <h3 id="p3-title">Projet 3 — Nom du projet</h3>
-            <div class="meta">Rôle: UI/UX • Stack: Vue.js / API</div>
-            <p>Expliquez l’impact utilisateur et les métriques (ex: +25% conversion). Ajoutez un lien vers une étude de cas.</p>
-          </div>
-          <div class="actions">
-            <a class="btn primary" href="#" aria-label="Voir le projet 3 (démo)">Voir le projet</a>
-            <a class="btn" href="#" aria-label="Voir le code source du projet 3">Code source</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="container" aria-labelledby="contact-title">
-      <p class="kicker">Contact</p>
-      <h2 id="contact-title">Discutons de votre projet</h2>
-      <form action="#" method="post" novalidate aria-describedby="contact-hint">
-        <div class="row">
-          <div>
-            <label for="name">Nom <span aria-hidden="true">*</span></label>
-            <input id="name" name="name" type="text" placeholder="Votre nom" autocomplete="name" required />
-          </div>
-          <div>
-            <label for="email">Email <span aria-hidden="true">*</span></label>
-            <input id="email" name="email" type="email" placeholder="vous@exemple.com" autocomplete="email" required />
-          </div>
-        </div>
-        <div>
-          <label for="message">Message <span aria-hidden="true">*</span></label>
-          <textarea id="message" name="message" placeholder="Décrivez rapidement votre besoin..." required></textarea>
-        </div>
-        <p id="contact-hint" class="hint">Les champs marqués d’un astérisque sont obligatoires.</p>
-        <button class="btn primary" type="submit">Envoyer</button>
-      </form>
-    </section>
-  </main>
-
-  <footer role="contentinfo">
-    © <span id="year"></span> Votre Nom — Tous droits réservés.
-  </footer>
+    <footer>
+      © <span id="y"></span> Maxime Lorne — Disponible en Suisse romande (Genève/Lausanne)
+    </footer>
+  </div>
 </body>
 </html>
