@@ -1,8 +1,11 @@
-export const store = {
-    get(key, fallback){
-    try{ return JSON.parse(localStorage.getItem(key)) ?? fallback; }catch{ return fallback }
-    },
-    set(key, value){ localStorage.setItem(key, JSON.stringify(value)); }
-};
+// maths/registry.js
+const REGISTRY = [];
 
+// exports NOMMÉS (pas de default)
+export function registerExercises(list) {
+  REGISTRY.push(...list);
+}
 
+export function getAllExercises() {
+  return REGISTRY.slice();
+}
