@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maths — Exercices interactifs</title>
+  <meta name="description" content="Exercices interactifs : équations du 1er degré, droites affines, etc. Favoris et animations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="topbar">
+      <a class="brand" href="/">
+        <div class="logo">m</div>
+        <div class="brand-txt">
+          <strong>Maths interactives</strong>
+          <span>Par Maxime Lorne</span>
+        </div>
+      </a>
+      <nav class="top-actions">
+        <a class="btn ghost" href="/">Retour au portfolio</a>
+      </nav>
+    </header>
+
+    <main class="viewport">
+      <!-- Vue liste -->
+      <section id="listView" class="view active" aria-label="Liste des exercices">
+        <div class="container">
+          <h1>Exercices</h1>
+          <div id="cards"></div>
+        </div>
+      </section>
+
+      <!-- Vue détail (montée depuis la droite) -->
+      <section id="detailView" class="view" aria-label="Détail de l'exercice">
+        <div class="container">
+          <button id="backBtn" class="btn back" aria-label="Revenir à la liste">← Retour</button>
+          <div id="detailMount"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">Projet pédagogique léger (HTML/CSS/JS) • Favoris stockés localement • <a href="/" class="inline">Portfolio</a></footer>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Équation du 1er degré — Démo interactive</title>
+  <meta name="description" content="Petit outil visuel pour entraîner les égalités en ajoutant/soustrayant la même quantité de chaque côté et résoudre une équation ax + b = cx + d."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Tu peux ajuster ces couleurs pour coller à ton portfolio */
+      --bg: #0d1b2a;
+      --panel: #11253a;
+      --panel-2: #0f2134;
+      --text: #e6f1ff;
+      --muted: #a9c1d9;
+      --accent: #37b4e7;
+      --accent-2: #90e0ef;
+      --ok: #74c69d;
+      --warn: #ffd166;
+      --err: #ef476f;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background: radial-gradient(1200px 800px at 10% -10%, #17324d 0%, var(--bg) 40%), var(--bg);
+      color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      line-height:1.5; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+    }
+    .container{max-width:1100px; margin:0 auto; padding:24px;}
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text);
+    }
+    .brand .logo{width:44px; height:44px; border-radius:50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display:grid; place-items:center; font-weight:800; color:#01242f; box-shadow:var(--shadow)}
+    .brand .title{font-weight:700; font-size:20px}
+    .card{
+      background:linear-gradient(180deg, var(--panel), var(--panel-2)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow);
+    }
+    .hero{padding:20px 20px 8px}
+    .hero h1{margin:0; font-size:28px}
+    .hero p{margin:6px 0 0; color:var(--muted)}
+
+    .grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:20px}
+    @media (max-width: 900px){ .grid{ grid-template-columns: 1fr; } }
+
+    .equation-panel{padding:20px}
+    .equation{
+      display:flex; align-items:center; justify-content:center; gap:14px; padding:24px; border-radius:12px;
+      background: rgba(255,255,255,.03); border:1px dashed rgba(255,255,255,.08);
+      font-size:32px; font-weight:700; letter-spacing:.3px;
+    }
+    .equation small{font-weight:500; font-size:14px; color:var(--muted)}
+
+    .controls{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .controls .btn{appearance:none; border:none; border-radius:12px; padding:10px 14px; font-weight:600; cursor:pointer; color:#06202a; background:var(--accent); box-shadow: var(--shadow);}
+    .btn.secondary{ background:#1e3a5a; color:var(--text); border:1px solid rgba(255,255,255,.09)}
+    .btn.ghost{ background:transparent; color:var(--muted); border:1px dashed rgba(255,255,255,.12)}
+    .btn:disabled{ opacity:.6; cursor:not-allowed }
+
+    .form-row{display:flex; gap:8px; align-items:end; flex-wrap:wrap; margin-top:10px}
+    .field{display:flex; flex-direction:column; gap:6px}
+    .field label{font-size:12px; color:var(--muted)}
+    input[type="number"], select{
+      background:#0f2236; border:1px solid rgba(255,255,255,.12); color:var(--text); border-radius:10px; padding:10px 12px; width:110px;
+    }
+    select{ width:auto }
+
+    .steps-panel{ padding:20px }
+    .steps-header{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px }
+    .steps{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+    .step{
+      position:relative; padding:14px 14px; background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden;
+      transition: transform .25s ease, background .25s ease, border-color .25s ease;
+    }
+    .step[data-state="pending"]{ opacity:.6 }
+    .step[data-state="done"]{ border-color: rgba(116,198,157,.45); }
+    .step:hover{ transform: translateY(-2px); background:rgba(255,255,255,.04) }
+    .step .eq{ font-weight:700; font-size:22px }
+    .step .hint{ color:var(--muted); font-size:13px; margin-top:6px }
+
+    /* Tooltip */
+    .tooltip{ position:absolute; inset:auto auto 100% 0; transform: translateY(-8px); background:#031521; color:var(--text); border:1px solid rgba(255,255,255,.12); border-radius:10px; padding:10px 12px; box-shadow: var(--shadow); font-size:13px; width:max(260px, 40%); display:none; }
+    .step:hover .tooltip{ display:block }
+
+    /* Tiny progress bar */
+    .progress{ height:6px; background:#0c1c2d; border-radius:6px; overflow:hidden }
+    .progress > i{ display:block; height:100%; width:0%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .5s ease }
+
+    footer{ color:var(--muted); font-size:13px; text-align:center; margin:26px 0 10px }
+    a.inline{ color:var(--accent); text-underline-offset:3px }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="brand" href="/">
+        <div class="logo">x</div>
+        <div>
+          <div class="title">Équation du 1er degré</div>
+          <div style="color:var(--muted); font-size:12px">Démo interactive — par Maxime Lorne</div>
+        </div>
+      </a>
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <a class="btn secondary" href="/" style="text-decoration:none; padding:10px 14px; border-radius:12px">Retour au portfolio</a>
+        <a class="btn ghost" href="#" id="shareLink" style="text-decoration:none; padding:10px 14px; border-radius:12px">Partager</a>
+      </div>
+    </header>
+
+    <section class="card hero">
+      <h1>Résoudre <small>ax + b = cx + d</small></h1>
+      <p>Objectif : entraîner l’égalité en <strong>ajoutant/soustrayant la même quantité des deux côtés</strong>, puis isoler <em>x</em>. Passe la souris sur chaque étape pour voir les détails.</p>
+    </section>
+
+    <div class="grid" style="margin-top:20px">
+      <section class="card equation-panel">
+        <div class="equation" id="equationText" aria-live="polite">—</div>
+
+        <div class="controls">
+          <button class="btn" id="playBtn">Lancer les étapes</button>
+          <button class="btn secondary" id="nextBtn" disabled>Étape suivante</button>
+          <button class="btn ghost" id="resetBtn">Réinitialiser</button>
+          <button class="btn ghost" id="newBtn">Nouvelle équation</button>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Type de génération</label>
+            <select id="genMode">
+              <option value="balanced">Facile : solution entière petite</option>
+              <option value="random">Aléatoire : coefficients ±9</option>
+              <option value="custom">Personnalisé (remplis ci‑dessous)</option>
+            </select>
+          </div>
+          <div class="field"><label>a</label><input id="a" type="number" value="2" step="1"/></div>
+          <div class="field"><label>b</label><input id="b" type="number" value="10" step="1"/></div>
+          <div class="field"><label>c</label><input id="c" type="number" value="3" step="1"/></div>
+          <div class="field"><label>d</label><input id="d" type="number" value="5" step="1"/></div>
+        </div>
+
+        <div style="margin-top:14px">
+          <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+        </div>
+      </section>
+
+      <section class="card steps-panel">
+        <div class="steps-header">
+          <h3 style="margin:0">Étapes</h3>
+          <small style="color:var(--muted)">Survole une étape pour l’explication</small>
+        </div>
+        <ol class="steps" id="steps"></ol>
+      </section>
+    </div>
+
+    <footer>
+      Fait pour l’apprentissage de ma cousine • Projet open‑source léger (HTML/CSS/JS pur). <a class="inline" href="#" id="copyEmbed">Copier le code d’intégration</a>
+    </footer>
+  </div>
+
+  <template id="stepTpl">
+    <li class="step" data-state="pending">
+      <div class="eq">2x + 10 = 3x + 5</div>
+      <div class="hint">—</div>
+      <div class="tooltip" role="tooltip">Détails…</div>
+    </li>
+  </template>
+
+  <script>
+  // --------- Helpers de rendu ---------
+  const fmt = (n)=>{
+    if (n === 0) return "0";
+    // Affiche signe explicite pour opérations
+    return String(n);
+  }
+  const fmtTerm = (coef)=>{
+    if (coef === 0) return "0";
+    if (coef === 1) return "x";
+    if (coef === -1) return "-x";
+    return `${coef}x`;
+  }
+  const eqToString = (a,b,c,d)=>`${fmtTerm(a)} ${b<0?'-':'+'} ${Math.abs(b)} = ${fmtTerm(c)} ${d<0?'-':'+'} ${Math.abs(d)}`.replace(/^0 \+ /,'').replace(/= 0 \+ /,'= ');
+
+  // --------- Génération d'équations ---------
+  function genBalanced(){
+    // Choisit solution entière |x|<=9 et fabrique (a-c)*x = (d-b)
+    const x = rndInt(-9,9) || 3;
+    const a = rndNonZero(-5,5);
+    const c = rndNonZero(-5,5);
+    const b = rndInt(-9,9);
+    const d = (a-c)*x + b; // garanti solution x
+    return {a,b,c,d,x};
+  }
+  function genRandom(){
+    const a = rndNonZero(-9,9), c = rndNonZero(-9,9);
+    const b = rndInt(-9,9), d = rndInt(-9,9);
+    // Évite cas a==c et a-c divisible par 0
+    if (a===c) return genRandom();
+    return {a,b,c,d};
+  }
+  function rndInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min }
+  function rndNonZero(min,max){ let n=0; while(n===0) n=rndInt(min,max); return n }
+
+  // --------- Calcul des étapes pédagogiques ---------
+  function buildSteps(a,b,c,d){
+    const steps=[];
+    // 1) Équation de départ
+    steps.push({ eq:eqToString(a,b,c,d), hint:"Équation de départ.", tip:"On cherche à isoler x." });
+
+    // 2) Regrouper les x à gauche: soustraire c·x des deux côtés
+    const s1 = {a:a-c, b:b, c:0, d:d};
+    steps.push({
+      eq:eqToString(s1.a, s1.b, s1.c, s1.d),
+      hint:`Soustraire ${fmtTerm(c)} des deux côtés.`,
+      tip:`On fait −(${fmtTerm(c)}) des deux côtés : (${eqToString(a,b,c,d)}) − ${fmtTerm(c)} ⇒ ${eqToString(s1.a,b,0,d)}.`
+    });
+
+    // 3) Regrouper les constantes à droite: soustraire b des deux côtés
+    const s2 = {a:s1.a, b:0, c:0, d:s1.d - b};
+    steps.push({
+      eq:eqToString(s2.a, s2.b, s2.c, s2.d),
+      hint:`Soustraire ${fmt(b)} des deux côtés pour déplacer la constante.`,
+      tip:`On fait −(${b}) des deux côtés : ${eqToString(s1.a,b,0,s1.d)} − ${b} ⇒ ${eqToString(s2.a,0,0,s2.d)}.`
+    });
+
+    // 4) Isoler x: diviser par (a−c)
+    const coef = s2.a;
+    const s3 = {a:1, b:0, c:0, d: s2.d/coef};
+    steps.push({
+      eq:`x = ${Number.isInteger(s3.d)? s3.d : (s3.d.toFixed(3))}`,
+      hint:`Diviser chaque côté par ${fmt(coef)}.`,
+      tip:`(${eqToString(s2.a,0,0,s2.d)}) ÷ ${coef} ⇒ x = ${s3.d}.`
+    });
+
+    return steps;
+  }
+
+  // --------- UI et animations ---------
+  const elEquation = document.getElementById('equationText');
+  const elSteps = document.getElementById('steps');
+  const playBtn = document.getElementById('playBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const newBtn = document.getElementById('newBtn');
+  const bar = document.getElementById('bar');
+  const genMode = document.getElementById('genMode');
+  const inputs = ['a','b','c','d'].map(id=>document.getElementById(id));
+
+  let state = { a:2, b:10, c:3, d:5, steps:[], idx:0 };
+
+  function setEquationText(){ elEquation.textContent = eqToString(state.a, state.b, state.c, state.d); }
+
+  function renderSteps(){
+    elSteps.innerHTML='';
+    state.steps.forEach((s, i)=>{
+      const node = document.getElementById('stepTpl').content.cloneNode(true);
+      const li = node.querySelector('.step');
+      li.dataset.state = i===0? 'done' : 'pending';
+      li.querySelector('.eq').textContent = s.eq;
+      li.querySelector('.hint').textContent = s.hint;
+      li.querySelector('.tooltip').textContent = s.tip;
+      elSteps.appendChild(node);
+    });
+    updateProgress();
+  }
+
+  function updateProgress(){
+    const n = state.steps.length; const done = Math.min(state.idx, n-1);
+    const pct = (done)/(n-1) * 100; // ignore step 0 in progress
+    bar.style.width = isFinite(pct)? pct+"%" : "0%";
+    nextBtn.disabled = (state.idx >= n-1);
+  }
+
+  function applyIdx(){
+    const list = [...elSteps.querySelectorAll('.step')];
+    list.forEach((li, i)=>{ li.dataset.state = i<=state.idx? 'done':'pending'; });
+    // Défilement doux vers la dernière étape validée
+    const current = list[state.idx];
+    if(current) current.scrollIntoView({behavior:'smooth', block:'center'});
+    updateProgress();
+  }
+
+  function buildFromUI(){
+    const a = +inputs[0].value, b = +inputs[1].value, c = +inputs[2].value, d = +inputs[3].value;
+    if (a===c) { inputs[2].value = c+1; return buildFromUI(); }
+    state = { a,b,c,d, idx:0 };
+    state.steps = buildSteps(a,b,c,d);
+    setEquationText();
+    renderSteps();
+  }
+
+  function newEquation(){
+    const mode = genMode.value;
+    let data;
+    if(mode==='balanced') data = genBalanced();
+    else if(mode==='random') data = genRandom();
+    else data = { a:+a.value, b:+b.value, c:+c.value, d:+d.value };
+    inputs[0].value = data.a; inputs[1].value = data.b; inputs[2].value = data.c; inputs[3].value = data.d;
+    buildFromUI();
+  }
+
+  // Buttons
+  playBtn.addEventListener('click', async ()=>{
+    state.idx = 0; applyIdx();
+    nextBtn.disabled = false;
+    for(let i=1; i<state.steps.length; i++){
+      await wait(900);
+      state.idx = i; applyIdx();
+    }
+  });
+  nextBtn.addEventListener('click', ()=>{
+    state.idx = Math.min(state.idx+1, state.steps.length-1);
+    applyIdx();
+  });
+  resetBtn.addEventListener('click', ()=>{ state.idx = 0; applyIdx(); });
+  newBtn.addEventListener('click', newEquation);
+  genMode.addEventListener('change', ()=>{
+    const isCustom = genMode.value==='custom';
+    inputs.forEach(inp=> inp.disabled = !isCustom);
+    if(!isCustom) newEquation();
+  });
+  inputs.forEach(inp=> inp.addEventListener('input', buildFromUI));
+
+  document.getElementById('shareLink').addEventListener('click', (e)=>{
+    e.preventDefault();
+    if(navigator.share){
+      navigator.share({title:document.title, text:'Démo interactive — Équation du 1er degré', url:location.href});
+    }else{
+      navigator.clipboard.writeText(location.href);
+      alert('Lien copié dans le presse-papiers.');
+    }
+  });
+  document.getElementById('copyEmbed').addEventListener('click', (e)=>{
+    e.preventDefault();
+    const code = `<iframe src="${location.href}" title="Équation 1er degré" style="width:100%;min-height:560px;border:0;border-radius:12px;overflow:hidden"></iframe>`;
+    navigator.clipboard.writeText(code);
+    alert('Code d\'intégration copié.');
+  });
+
+  function wait(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+  // Init
+  newEquation();
+  </script>
+</body>
+</html>
