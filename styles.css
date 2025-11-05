@@ -61,6 +61,36 @@ footer{margin:24px 0;color:#c8dff2;font-size:13px}
   .span-7,.span-5{grid-column: span 12}
 }
 
+.lang-switch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #e6f1ff;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+.lang-btn.active {
+  background: var(--accent);
+  color: #01242f;
+  font-weight: 600;
+}
+
+.lang-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+
 /* Print-friendly */
 @media print{
   body{background:#fff;color:#111}

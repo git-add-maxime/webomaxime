@@ -4,117 +4,122 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maxime Lorne — Portfolio Informatique (Support • Supervision)</title>
-  <meta name="description" content="Technicien support informatique & supervision (N1/N2) — AD, Office 365, ticketing (EasyVista, Jira, Autotask), supervision (alertes & escalade).">
+  <meta name="description" content="Technicien support informatique & supervision (N1/N2) — AD, Office 365, ticketing (EasyVista, Jira, ServiceNow), supervision (alertes & escalade).">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* mini style pour le switch langue (ajustable à ton thème) */
+    .lang-switch{position:absolute;top:20px;right:20px;display:flex;gap:8px}
+    .lang-btn{background:transparent;border:1px solid rgba(255,255,255,.3);color:#e6f1ff;border-radius:6px;padding:4px 8px;cursor:pointer;font-size:.9rem}
+    .lang-btn.active{background:var(--accent, #4ec3f7);color:#03222c;font-weight:600}
+  </style>
   <script defer src="script.js"></script>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Maxime Lorne",
-    "jobTitle":"Technicien support / Supervision",
-    "email":"mailto:maxime.lorne.pro@gmail.com",
-    "sameAs":["https://www.linkedin.com/in/maximelorne"]
-  }
-  </script>
 </head>
-<body>
+<body data-i18n-title="meta.title">
   <div class="container">
     <header>
       <div class="id">
         <div class="avatar" aria-hidden="true">ML</div>
         <div>
-          <h1>Maxime Lorne</h1>
-          <div class="tagline">Technicien support informatique & supervision (N1/N2) — AD • O365 • Ticketing • Supervision (alertes & escalade)</div>
+          <h1 data-i18n="header.name">Maxime Lorne</h1>
+          <div class="tagline" data-i18n="header.tagline">
+            Technicien support informatique & supervision (N1/N2) — AD • O365 • Ticketing • Supervision (alertes & escalade)
+          </div>
         </div>
       </div>
+
+      <!-- Switch de langue -->
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="fr" aria-label="Français">FR</button>
+        <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+      </div>
+
       <div class="btns">
-        <a class="btn primary" href="#contact">Me contacter</a>
-        <a class="btn" href="https://www.linkedin.com/in/maximelorne" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="#cv">CV (PDF)</a>
+        <a class="btn primary" href="#contact" data-i18n="cta.contact">Me contacter</a>
+        <a class="btn" href="https://www.linkedin.com/in/maximelorne" target="_blank" rel="noopener" data-i18n="cta.linkedin">LinkedIn</a>
+        <a class="btn" href="#cv" data-i18n="cta.cv">CV (PDF)</a>
       </div>
     </header>
 
     <section class="hero">
-      <p>
+      <p data-i18n="hero.paragraph">
         Technicien support et supervision avec deux ans d'expérience en environnements Windows, Office 365 et Active Directory.
         Spécialisé dans la surveillance d'alertes, la gestion d'escalades et le support utilisateurs (N1/N2).
-        Compétent sur les outils de <strong>ticketing</strong>  (EasyVista, Jira, ServiceNow) et le <strong>scripting</strong>  (PowerShell, VBA).
+        Compétent sur les outils de ticketing (EasyVista, Jira, ServiceNow) et le scripting (PowerShell, VBA).
         Basé à Lyon et disponible pour un poste à Genève.
       </p>
     </section>
 
     <div class="grid">
       <section class="card span-7">
-        <h2>Expériences</h2>
+        <h2 data-i18n="exp.title">Expériences</h2>
         <div class="timeline">
           <div class="item">
-            <div class="when">2025 — présent</div>
+            <div class="when">2025 — <span data-i18n="exp.now">présent</span></div>
             <div>
-              <div class="role">Supervision — Enedis (via Helpline)</div>
-              <div class="stack">Surveillance d'alertes • Qualification et escalade de tickets • Supervision 24/7 • Horaires tournants (matin/après-midi/nuit)</div>
+              <div class="role" data-i18n="exp.helpline.role">Supervision — Enedis (via Helpline)</div>
+              <div class="stack" data-i18n="exp.helpline.stack">Surveillance d'alertes • Qualification et escalade de tickets • Supervision 24/7 • Horaires tournants (matin/après-midi/nuit)</div>
             </div>
           </div>
           <div class="item">
             <div class="when">12/2024 — 03/2025</div>
             <div>
-              <div class="role">Technicien de niveau 2 — IsiSolutions</div>
-              <div class="stack">Windows & Mac • Incidents serveurs/RDS/NAS • Office 365 • Autotask • Support réseau • Gestion pôle d'assistance.</div>
+              <div class="role" data-i18n="exp.isi.role">Technicien de niveau 2 — IsiSolutions</div>
+              <div class="stack" data-i18n="exp.isi.stack">Windows & Mac • Incidents serveurs/RDS/NAS • Office 365 • Autotask • Support réseau • Gestion pôle d'assistance.</div>
             </div>
           </div>
           <div class="item">
             <div class="when">11/2023 — 03/2024</div>
             <div>
-              <div class="role">Support informatique — Airbus DS (SII)</div>
-              <div class="stack">Support N1/N2 • Migration O365 • Formateur nouveau techniciens • Jira (JQL) • PowerShell • Masterisation de poste.</div>
+              <div class="role" data-i18n="exp.airbus.role">Support informatique — Airbus DS (SII)</div>
+              <div class="stack" data-i18n="exp.airbus.stack">Support N1/N2 • Migration O365 • Formation nouveaux techniciens • Jira (JQL) • PowerShell • Masterisation de poste.</div>
             </div>
           </div>
           <div class="item">
             <div class="when">08/2021 — 09/2022</div>
             <div>
-              <div class="role">Support informatique — Areva (SPIE)</div>
-              <div class="stack">N1/N2 à fort volume • Référent AD/IAM  • O365 • EasyVista • Déploiements via SCCM.</div>
+              <div class="role" data-i18n="exp.areva.role">Support informatique — Areva (SPIE)</div>
+              <div class="stack" data-i18n="exp.areva.stack">N1/N2 à fort volume • Référent AD/IAM • O365 • EasyVista • Déploiements via SCCM.</div>
             </div>
           </div>
         </div>
       </section>
 
       <aside class="card span-5">
-        <h2>Compétences clés</h2>
+        <h2 data-i18n="skills.title">Compétences clés</h2>
         <div class="chips">
-          <span class="chip">Active Directory</span>
-          <span class="chip">Office 365</span>
-          <span class="chip">Supervision (alertes & escalade)</span>
-          <span class="chip">Support N1/N2</span>
-          <span class="chip">EasyVista</span>
-          <span class="chip">Jira (JQL)</span>
-          <span class="chip">IA générative</span>
-          <span class="chip">SCCM</span>
-          <span class="chip">PowerShell</span>
-          <span class="chip">VBA</span>
-          <span class="chip">Python (bases)</span>
+          <span class="chip" data-i18n="skills.ad">Active Directory</span>
+          <span class="chip" data-i18n="skills.o365">Office 365</span>
+          <span class="chip" data-i18n="skills.supervision">Supervision (alertes & escalade)</span>
+          <span class="chip" data-i18n="skills.support">Support N1/N2</span>
+          <span class="chip" data-i18n="skills.easyvista">EasyVista</span>
+          <span class="chip" data-i18n="skills.jira">Jira (JQL)</span>
+          <span class="chip" data-i18n="skills.ai">IA générative (ChatGPT, Copilot)</span>
+          <span class="chip" data-i18n="skills.sccm">SCCM</span>
+          <span class="chip" data-i18n="skills.ps">PowerShell</span>
+          <span class="chip" data-i18n="skills.vba">VBA</span>
+          <span class="chip" data-i18n="skills.py">Python (bases)</span>
         </div>
       </aside>
 
       <section class="card span-7">
-        <h2>Scripts & réalisations</h2>
+        <h2 data-i18n="projects.title">Scripts & réalisations</h2>
         <ul>
-          <li>Automatisation de tâches en PowerShell (comptes AD, collectes, masterisation).</li>
-          <li>Macros VBA pour Excel (suivi interventions, exports ticketing).</li>
-          <li>Partie maths</li>
+          <li data-i18n="projects.powershell">Automatisation de tâches en PowerShell (comptes AD, collectes, masterisation).</li>
+          <li data-i18n="projects.vba">Macros VBA pour Excel (suivi interventions, exports ticketing).</li>
+          <li><a href="./maths/" data-i18n="projects.maths">Page web pour les maths (exercices interactifs)</a></li>
         </ul>
       </section>
 
       <aside class="card span-5">
-        <h2>Formation & infos</h2>
-        <p><strong>DUT Informatique</strong> (2019)</p>
-        <p>Français (courant), Anglais (lu & parlé)</p>
-        <p>Basé à Lyon — mobilité Suisse romande</p>
+        <h2 data-i18n="edu.title">Formation & infos</h2>
+        <p><strong data-i18n="edu.degree">DUT Informatique</strong> (2019)</p>
+        <p data-i18n="edu.langs">Français (courant), Anglais (lu & parlé)</p>
+        <p data-i18n="edu.mobility">Basé à Lyon — disponible pour un poste à Genève</p>
         <div id="contact">
-          <p><strong>Contact :</strong><br>
+          <p><strong data-i18n="contact.title">Contact :</strong><br>
             <a href="mailto:maxime.lorne.pro@gmail.com">maxime.lorne.pro@gmail.com</a><br>
             <a href="https://www.linkedin.com/in/maximelorne" target="_blank" rel="noopener">linkedin.com/in/maximelorne</a>
           </p>
@@ -122,19 +127,23 @@
       </aside>
 
       <section class="card span-12" id="cv">
-        <h2>CV (PDF) & références</h2>
-        <p>Le CV PDF reste synthétique (1 page) et renvoie ici pour les détails. Pour un aperçu rapide, utilisez ce portfolio.</p>
+        <h2 data-i18n="cv.title">CV (PDF) & références</h2>
+        <p data-i18n="cv.desc">Le CV PDF reste synthétique (1 page) et renvoie ici pour les détails. Pour un aperçu rapide, utilisez ce portfolio.</p>
         <ul>
-          <li>Référence — Helpline 2025 : M. Bonnamour (Team Leader)</li>
-          <li>Référence — IsiSolutions 2025 : M. Picon (Directeur)</li>
-          <li>Référence — SII 2024 : Adeline Berger (Chef de projet infogérance)</li>
+          <li data-i18n="cv.ref1">Référence — Helpline 2025 : M. Bonnamour (Team Leader)</li>
+          <li data-i18n="cv.ref2">Référence — IsiSolutions 2025 : M. Picon (Directeur)</li>
+          <li data-i18n="cv.ref3">Référence — SII 2024 : Adeline Berger (Chef de projet infogérance)</li>
         </ul>
       </section>
     </div>
 
     <footer>
-      © <span id="y"></span> Maxime Lorne — motivé pour rejoindre une équipe IT à Genève
+      <span data-i18n="footer.text">© 2025 Maxime Lorne — motivé pour rejoindre une équipe IT à Genève</span>
     </footer>
   </div>
+
+  <!-- i18n scripts -->
+  <script src="./lang/lang.js"></script>
+  <script src="./lang/lang-switcher.js"></script>
 </body>
 </html>
