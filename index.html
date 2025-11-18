@@ -4,9 +4,12 @@
   <meta charset="UTF-8" />
   <title>Racine Coiffure - Questionnaire de satisfaction</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Questionnaire de satisfaction Racine Coiffure." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -32,41 +35,62 @@
     <section id="enquete" class="card">
       <div class="card-header">
         <h1 class="card-title">Votre avis sur Racine Coiffure</h1>
-        <p class="card-subtitle">Merci de prendre un instant pour répondre à ce questionnaire.</p>
+        <p class="card-subtitle">
+          Merci de prendre un instant pour répondre à ce questionnaire. Cela nous aide à améliorer nos services.
+        </p>
       </div>
 
-      <form id="surveyForm" novalidate>
+      <form
+        id="surveyForm"
+        novalidate
+        action="https://script.google.com/macros/s/AKfycbxArpPa4Ib1AHs3Bf7D-y3ww70aX-RJxiVkka9vTZhscnph2tMwGOOxL6gVjhRSqfte/exec"
+        method="POST"
+      >
         <!-- Satisfaction globale -->
         <fieldset>
-          <legend>Quelle est votre satisfaction globale ? <span class="required">*</span></legend>
-          <p class="hint">1 étoile = très insatisfait, 5 étoiles = très satisfait</p>
+          <legend>
+            Quelle est votre satisfaction globale ? <span class="required">*</span>
+          </legend>
+          <p class="hint">1 étoile = très insatisfait, 5 étoiles = très satisfait.</p>
           <div class="stars" data-required="true">
+            <!-- 1 à gauche, 5 à droite -->
             <input type="radio" name="rating_global" id="rating_global_1" value="1">
             <label for="rating_global_1" data-value="1">⭐</label>
+
             <input type="radio" name="rating_global" id="rating_global_2" value="2">
             <label for="rating_global_2" data-value="2">⭐</label>
+
             <input type="radio" name="rating_global" id="rating_global_3" value="3">
             <label for="rating_global_3" data-value="3">⭐</label>
+
             <input type="radio" name="rating_global" id="rating_global_4" value="4">
             <label for="rating_global_4" data-value="4">⭐</label>
+
             <input type="radio" name="rating_global" id="rating_global_5" value="5">
             <label for="rating_global_5" data-value="5">⭐</label>
           </div>
-          <div class="error-inline" data-error-for="rating_global">Merci de renseigner votre satisfaction globale.</div>
+          <div class="error-inline" data-error-for="rating_global">
+            Merci de renseigner votre satisfaction globale.
+          </div>
         </fieldset>
 
         <!-- Ambiance générale -->
         <fieldset>
           <legend>Ambiance générale du salon</legend>
+          <p class="hint">1 étoile = ambiance peu agréable, 5 étoiles = ambiance très agréable.</p>
           <div class="stars">
             <input type="radio" name="rating_ambiance" id="rating_ambiance_1" value="1">
             <label for="rating_ambiance_1" data-value="1">⭐</label>
+
             <input type="radio" name="rating_ambiance" id="rating_ambiance_2" value="2">
             <label for="rating_ambiance_2" data-value="2">⭐</label>
+
             <input type="radio" name="rating_ambiance" id="rating_ambiance_3" value="3">
             <label for="rating_ambiance_3" data-value="3">⭐</label>
+
             <input type="radio" name="rating_ambiance" id="rating_ambiance_4" value="4">
             <label for="rating_ambiance_4" data-value="4">⭐</label>
+
             <input type="radio" name="rating_ambiance" id="rating_ambiance_5" value="5">
             <label for="rating_ambiance_5" data-value="5">⭐</label>
           </div>
@@ -75,15 +99,20 @@
         <!-- Accueil -->
         <fieldset>
           <legend>L'accueil</legend>
+          <p class="hint">1 étoile = accueil peu satisfaisant, 5 étoiles = accueil excellent.</p>
           <div class="stars">
             <input type="radio" name="rating_accueil" id="rating_accueil_1" value="1">
             <label for="rating_accueil_1" data-value="1">⭐</label>
+
             <input type="radio" name="rating_accueil" id="rating_accueil_2" value="2">
             <label for="rating_accueil_2" data-value="2">⭐</label>
+
             <input type="radio" name="rating_accueil" id="rating_accueil_3" value="3">
             <label for="rating_accueil_3" data-value="3">⭐</label>
+
             <input type="radio" name="rating_accueil" id="rating_accueil_4" value="4">
             <label for="rating_accueil_4" data-value="4">⭐</label>
+
             <input type="radio" name="rating_accueil" id="rating_accueil_5" value="5">
             <label for="rating_accueil_5" data-value="5">⭐</label>
           </div>
@@ -93,8 +122,14 @@
         <fieldset>
           <legend>Les produits utilisés vous ont-ils convenu ?</legend>
           <div class="yesno-group">
-            <label class="yesno-option"><input type="radio" name="produits_ok" value="oui"><span>Oui</span></label>
-            <label class="yesno-option"><input type="radio" name="produits_ok" value="non"><span>Non</span></label>
+            <label class="yesno-option">
+              <input type="radio" name="produits_ok" value="oui">
+              <span>Oui</span>
+            </label>
+            <label class="yesno-option">
+              <input type="radio" name="produits_ok" value="non">
+              <span>Non</span>
+            </label>
           </div>
         </fieldset>
 
@@ -102,8 +137,14 @@
         <fieldset>
           <legend>Avez-vous trouvé la prise de rendez-vous simple ?</legend>
           <div class="yesno-group">
-            <label class="yesno-option"><input type="radio" name="prise_rdv_ok" value="oui"><span>Oui</span></label>
-            <label class="yesno-option"><input type="radio" name="prise_rdv_ok" value="non"><span>Non</span></label>
+            <label class="yesno-option">
+              <input type="radio" name="prise_rdv_ok" value="oui">
+              <span>Oui</span>
+            </label>
+            <label class="yesno-option">
+              <input type="radio" name="prise_rdv_ok" value="non">
+              <span>Non</span>
+            </label>
           </div>
         </fieldset>
 
@@ -111,22 +152,41 @@
         <fieldset>
           <legend>Souhaiteriez-vous revenir chez Racine Coiffure ?</legend>
           <div class="yesno-group">
-            <label class="yesno-option"><input type="radio" name="revenir" value="oui"><span>Oui</span></label>
-            <label class="yesno-option"><input type="radio" name="revenir" value="non"><span>Non</span></label>
+            <label class="yesno-option">
+              <input type="radio" name="revenir" value="oui">
+              <span>Oui</span>
+            </label>
+            <label class="yesno-option">
+              <input type="radio" name="revenir" value="non">
+              <span>Non</span>
+            </label>
           </div>
         </fieldset>
 
         <!-- Commentaires libres -->
         <div class="form-group">
-          <label for="commentaires">Commentaires supplémentaires (facultatif)</label>
-          <textarea id="commentaires" name="commentaires" placeholder="Votre message..."></textarea>
+          <label for="commentaires">
+            Commentaires supplémentaires (facultatif)
+          </label>
+          <textarea id="commentaires" name="commentaires"
+            placeholder="Vous pouvez préciser ce que vous avez particulièrement apprécié ou ce qui pourrait être amélioré."></textarea>
         </div>
 
         <!-- Bouton -->
         <div class="form-footer">
-          <button type="submit" class="btn-primary">Envoyer mes réponses 📩</button>
-          <div id="formSuccess" class="success">Merci, votre réponse a bien été enregistrée.</div>
-          <div id="formError" class="error-inline">Une erreur est survenue. Merci de réessayer.</div>
+          <button type="submit" class="btn-primary">
+            Envoyer mes réponses
+            <span>📨</span>
+          </button>
+          <div id="formSuccess" class="success" aria-live="polite">
+            <span>Merci, votre réponse a bien été enregistrée.</span>
+          </div>
+          <div id="formError" class="error-inline" style="margin-top:0;">
+            Une erreur est survenue lors de l’envoi. Merci de réessayer plus tard.
+          </div>
+          <p class="small">
+            Vos réponses sont utilisées uniquement par Racine Coiffure pour améliorer nos services.
+          </p>
         </div>
       </form>
     </section>
@@ -134,6 +194,7 @@
 
   <footer>
     <span>© <span id="year"></span> Racine Coiffure – Tous droits réservés.</span>
+    <span>Questionnaire de satisfaction</span>
   </footer>
 
   <script src="app.js"></script>
