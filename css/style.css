@@ -1,10 +1,10 @@
 /* VARIABLES GLOBALES */
 :root {
-    --primary-color: #1a252f;
-    --accent-color: #3498db;
-    --bg-color: #f4f7f6;
-    --surface-color: #ffffff;
-    --border-color: #dcdcdc;
+    --primary-color: #1a252f; /* Bleu-gris foncé, pro */
+    --accent-color: #3498db;  /* Bleu plus vif pour les liens */
+    --bg-color: #f4f7f6;      /* Fond légèrement gris pour détacher les blocs */
+    --surface-color: #ffffff; /* Fond des blocs blanc */
+    --border-color: #e1e1e1;  /* Bordures très claires */
     --text-main: #333333;
     --text-muted: #666666;
 }
@@ -24,7 +24,7 @@ body {
 /* HEADER & FOOTER */
 header, footer { 
     text-align: center; 
-    padding: 1.5rem 1rem; 
+    padding: 1rem; /* Réduit pour gagner de la place */
     background-color: var(--surface-color); 
     border-bottom: 1px solid var(--border-color); 
 }
@@ -40,38 +40,42 @@ footer {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: opacity 0.2s;
-}
-.header-content:active {
-    opacity: 0.7;
 }
 .home-icon {
-    width: 28px;
-    height: 28px;
-    margin-right: 12px;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
     fill: var(--primary-color);
 }
 header h1 { 
-    font-size: 1.5rem; 
+    font-size: 1.3rem; 
     letter-spacing: 2px; 
     color: var(--primary-color); 
     margin: 0;
 }
 
-/* SYSTEME DE VUES (Single Page Application) */
+main { 
+    padding: 1rem; /* Espace grandement réduit sur les côtés et en haut */
+    width: 100%; 
+    max-width: 800px; 
+    margin: 0 auto; 
+    flex: 1; 
+}
+
+/* SYSTEME DE VUES (Single Page Application) - RÉINTÉGRÉ */
 .view { display: none; animation: fadeIn 0.3s ease-in-out; }
 .view.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
 /* PAGE 1 : ACCUEIL */
-.hero { padding: 1rem 0; text-align: center; }
-.hero h2 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary-color); }
+.hero { padding: 0.5rem 0; text-align: center; } /* Moins d'espace au-dessus du titre */
+.hero h2 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--primary-color); }
 .summary { 
     background: var(--surface-color); 
-    padding: 1.5rem; 
+    padding: 1.2rem; /* Boîte plus resserrée */
     border-radius: 6px; 
     border: 1px solid var(--border-color); 
-    margin-bottom: 2rem; 
+    margin-bottom: 1.5rem; 
     text-align: left; 
 }
 .summary p { margin-bottom: 0.8rem; }
